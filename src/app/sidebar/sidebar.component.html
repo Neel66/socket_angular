@@ -10,13 +10,15 @@
         </div>
     </mat-drawer>
 
-    <mat-toolbar class="main header">
+    <mat-toolbar class="main header w-full">
         <mat-icon *ngIf="!drawer.opened" (click)="drawer.toggle()">
             menu
         </mat-icon>
-        <div class="d-flex justify-content-between flex-column w-full">
 
-            <button mat-flat-button color="primary">+ Add user</button>
+        <div class="d-flex justify-content-between" [ngClass]="{'w-75': drawer.opened , 'w-100' : !drawer.opened}">
+
+            <h1>Chat</h1>
+            <button mat-flat-button color="primary" (click)="createUser()">+ Add user</button>
 
         </div>
     </mat-toolbar>
@@ -31,27 +33,40 @@
     <mat-toolbar class="main footer">
         <form>
 
-            <div class="d-flex flex-row align-items-end p-3 border-t bg-gray-50 dark:bg-transparent">
+            <div class="d-flex align-items-center w-full">
 
 
-                <div class="flex items-center h-11 my-px">
+                <div class="flex items-center">
                     <input type="file" (change)="selectFile($event)" class="d-none" #fileUpload
                         accept="image/png, image/jpg, image/jpeg">
-                    <button type="button" (click)="fileUpload.click()">
-                        <mat-icon>photo_library</mat-icon>
 
+                    <button type="button" mat-mini-fab color="primary" class="image-btn" (click)="fileUpload.click()">
+                        <mat-icon [ngStyle]="{'font-size' : '21px'}">attach_file</mat-icon>
                     </button>
                 </div>
 
+                <!-- <mat-form-field appearance="outline"
+                    class="fuse-mat-dense fuse-mat-no-subscript fuse-mat-rounded fuse-mat-bold w-full ml-4">
 
+                    <textarea class="min-h-5 my-0 resize-vertical" rows="10" cols="30"
+                        style="margin: 11px 0 !important; padding: 0 !important;" [rows]="1" matInput #messageInput
+                        (keydown.enter)="sendMessage()" (keydown)="onKeyDown($event)"></textarea>
 
-                <textarea class="min-h-5 my-0 resize-vertical" rows="10" cols="30"
-                    style="margin: 11px 0 !important; padding: 0 !important;" [rows]="1" matInput #messageInput
-                    (keydown.enter)="sendMessage()" (keydown)="onKeyDown($event)"></textarea>
+                </mat-form-field> -->
+                <form class="form-row">
+                    <div class="form-group row mx-1 col-md-12">
+                        <div className="col">
+                            <textarea class="min-h-5 my-0 resize-vertical form-control rounded"
+                                style="margin: 11px 0 !important; padding: 20 !important;" [rows]="1" #messageInput
+                                (keydown.enter)="sendMessage()" (keydown)="onKeyDown($event)"></textarea>
 
+                        </div>
 
-                <div class="flex items-center h-11 my-px ml-4">
-                    <button mat-icon-button>
+                    </div>
+                </form>
+
+                <div>
+                    <button mat-icon-button color="primary">
                         <mat-icon>send</mat-icon>
                     </button>
                 </div>
