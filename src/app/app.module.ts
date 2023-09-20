@@ -10,6 +10,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ChatComponent } from './chat/chat.component';
 import { HttpClientModule } from '@angular/common/http';
+import { CreateUserComponent } from './create-user/create-user.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
     SidebarComponent,
     NavbarComponent,
     ChatComponent,
+    CreateUserComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { UserService } from '../services/user.service';
+
+import { MatDialog } from '@angular/material/dialog';
+import { CreateUserComponent } from '../create-user/create-user.component';
 
 @Component({
   selector: 'app-sidebar',
@@ -11,7 +13,7 @@ export class SidebarComponent {
   @ViewChild('messageInput')
   messageInput!: ElementRef;
 
-  constructor(private _userService: UserService) {}
+  constructor(public dialog: MatDialog) {}
 
   removeImage(index: any) {
     let file = this.selected_images;
@@ -40,6 +42,8 @@ export class SidebarComponent {
   sendMessage() {}
 
   createUser() {
-    this._userService.creteUser({}).subscribe();
+    let dialogRef = this.dialog.open(CreateUserComponent, {
+      width: '30%',
+    });
   }
 }

@@ -1,0 +1,29 @@
+<button mat-icon-button class="close-button" [mat-dialog-close]="true">
+    <mat-icon class="close-icon">close</mat-icon>
+</button>
+<h1 mat-dialog-title>Add user</h1>
+<div class="m-3">
+    <form [formGroup]="createUserForm" (submit)="createUser()">
+        <mat-form-field class="w-100" appearance="outline">
+            <mat-label>Name</mat-label>
+            <input matInput [formControlName]="'name'" type="text" autofocus />
+            <mat-error *ngIf="createUserForm.get('name')?.hasError('maxlength')">
+                Name must not exceed 20 characters
+            </mat-error>
+            <mat-error *ngIf="createUserForm.get('name')?.hasError('minlength')">
+                Name must be 20 characters
+            </mat-error>
+            <mat-error *ngIf="createUserForm.get('name')?.hasError('required')">
+                Name is required
+            </mat-error>
+        </mat-form-field>
+
+        <mat-divider></mat-divider>
+        <div class="w-full float-end my-2">
+
+            <button mat-flat-button type="submit" class="m-1" [color]="'primary'">
+                Submit
+            </button>
+        </div>
+    </form>
+</div>
